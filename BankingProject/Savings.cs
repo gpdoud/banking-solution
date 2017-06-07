@@ -14,6 +14,7 @@ namespace BankingProject {
             return intAmount;
         }
         public void PayInterest() {
+            Program.Logger("Paying interest");
             double intToBePaid = CalcIntRateForMonth();
             Deposit(intToBePaid);
         }

@@ -55,8 +55,10 @@ namespace BankingProject {
             CheckIsLocked();
             if (!CheckForNegativeAmount(amount)) {
                 Balance += amount;
+                Program.Logger("Deposit of " + amount.ToString() + " successful!");
                 return true;
             }
+            Program.Logger("Deposit of " + amount.ToString() + " failed because negaive amount!");
             return false;
         }
         public bool Withdraw(double amount) {

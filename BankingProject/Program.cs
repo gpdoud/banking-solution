@@ -8,6 +8,13 @@ namespace BankingProject {
 
     public class Program {
 
+        public static LogCollection logs = new LogCollection();
+
+        public static void Logger(string Message) {
+            Log log = new Log(Message);
+            logs.Add(log);
+        }
+
         void Run() {
             Customer cust1 = new Customer(1, "Max Tech Training");
             cust1.Username = "MTT12345";
