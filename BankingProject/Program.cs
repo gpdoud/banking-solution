@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LoggingLibraryProject;
 
 namespace BankingProject {
 
     public class Program {
 
-        public static LogCollection logs = new LogCollection();
-
         public static void Logger(string Message) {
-            Log log = new Log(Message);
-            logs.Add(log);
+            LogCollection.Logger(Message);
         }
 
         void Run() {
@@ -71,7 +69,24 @@ namespace BankingProject {
         }
 
         static void Main(string[] args) {
-            (new Program()).Run();
+            try {
+                (new Program()).Run();
+            } catch (NegativeInputException ex) {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("The amount is " + ex.Amount.ToString());
+                Console.WriteLine("press any key ...");
+                Console.ReadKey();
+            } catch(InsufficientFundsException ex) {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("The amount is " + ex.Amount.ToString());
+                Console.WriteLine("The balance is " + ex.Balance.ToString());
+                Console.WriteLine("press any key ...");
+                Console.ReadKey();
+            } catch (Exception ex) {
+                Console.WriteLine("GENERAL EXCEPTION: " + ex.Message);
+                Console.WriteLine("press any key ...");
+                Console.ReadKey();
+            }
         }
     }
 }

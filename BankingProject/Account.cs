@@ -46,7 +46,10 @@ namespace BankingProject {
         private bool CheckForNegativeAmount(double amount) {
             if (amount < 0) {
                 Debug.WriteLine("Amount cannot be less than zero.");
-                return true;
+                NegativeInputException nie = new NegativeInputException("Deposit or Withdraw amount is negative.");
+                nie.Amount = amount;
+                throw nie;
+                //return true;
             } else {
                 return false;
             }
@@ -68,7 +71,11 @@ namespace BankingProject {
             }
             if (amount > Balance) {
                 Debug.WriteLine("Insufficient funds ...");
-                return false;
+                InsufficientFundsException xex = new InsufficientFundsException("Insufficient funds");
+                xex.Amount = amount;
+                xex.Balance = Balance;
+                throw xex;
+                //return false;
             } else {
                 Balance -= amount;
                 return true;
